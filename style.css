@@ -56,75 +56,167 @@ header h1 {
     font-weight: bold;
 }
 
+/* --- Input Section Enhancements --- */
 .input-section {
     display: flex;
+    flex-direction: column; /* Stack input fields */
+    gap: 10px; /* Space between input elements */
     margin-bottom: 25px;
 }
 
-#todo-input {
-    flex-grow: 1;
-    padding: 12px 15px;
+#todo-title-input,
+#todo-text-input,
+#todo-date-input,
+#todo-time-input {
+    padding: 10px 12px;
     border: 2px solid #ddd;
-    border-radius: 5px 0 0 5px;
+    border-radius: 5px;
     font-size: 16px;
     outline: none;
+    width: 100%; /* Make them take full width of the container */
 }
 
-#todo-input:focus {
+#todo-title-input:focus,
+#todo-text-input:focus,
+#todo-date-input:focus,
+#todo-time-input:focus {
     border-color: #007bff;
 }
 
+#todo-text-input {
+    resize: vertical; /* Allow vertical resize for textarea */
+    min-height: 60px;
+}
+
+.datetime-inputs {
+    display: flex;
+    gap: 10px; /* Space between date and time input */
+}
+
+.datetime-inputs input {
+    flex: 1; /* Allow date and time to share space */
+}
+
+/* Add Task Button - ensure it's full width if others are */
 #add-task-btn {
-    padding: 12px 20px;
+    padding: 12px 20px; /* Keep existing padding or adjust as needed */
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 0 5px 5px 0;
+    border-radius: 5px; /* Consistent with other inputs */
     cursor: pointer;
     font-size: 16px;
     outline: none;
     transition: background-color 0.3s ease;
+    /* width: 100%; */ /* Optional: make button full width */
 }
 
 #add-task-btn:hover {
     background-color: #0056b3;
 }
 
+
 .list-section ul {
     list-style-type: none;
 }
 
+
+/* --- To-Do Item Box Styling --- */
 .list-section li {
-    background-color: #f9f9f9;
-    padding: 12px 15px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background-color 0.3s ease;
+    background-color: transparent; /* Remove background from li itself */
+    padding: 0; /* Remove padding from li itself */
+    margin-bottom: 15px; /* Space between boxes */
+    /* display: flex; */ /* Remove flex from li if item-box handles layout */
+    /* justify-content: space-between; */
+    /* align-items: center; */
 }
 
-.list-section li.completed {
-    background-color: #e0ffe0;
+.todo-item-box {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-left: 5px solid #007bff; /* Accent border */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column; /* Stack content and actions */
+    gap: 10px; /* Space between content and actions */
+}
+
+.list-section li.completed .todo-item-box {
+    background-color: #e8f5e9; /* Light green for completed */
+    border-left-color: #28a745; /* Green accent for completed */
+}
+
+.task-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Space between title, description, datetime */
+}
+
+.task-title {
+    font-size: 1.5em; /* Big font */
+    font-weight: bold; /* Bold */
+    color: #333;
+    margin: 0; /* Remove default h3 margin */
+}
+
+.list-section li.completed .task-title,
+.list-section li.completed .task-description,
+.list-section li.completed .task-date .label, /* target label too */
+.list-section li.completed .task-date,
+.list-section li.completed .task-time .label, /* target label too */
+.list-section li.completed .task-time {
     text-decoration: line-through;
     color: #555;
 }
+.list-section li.completed .task-title {
+    color: #28a745; /* Darker green for completed title */
+}
 
-.list-section li .task-text {
-    flex-grow: 1;
-    margin-right: 10px;
+
+.task-description {
+    font-size: 1em;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+    white-space: pre-wrap; /* Respect newlines in description */
+}
+
+.task-datetime-details {
+    font-size: 0.85em;
+    color: #777;
+    display: flex;
+    flex-direction: column; /* Stack date and time if both present */
+    gap: 4px; /* Space between date and time lines */
+}
+.task-datetime-details .label {
+    font-weight: 600;
+    color: #444;
+    margin-right: 5px; /* Space between label and value */
+}
+
+
+.list-section li .actions {
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+    gap: 8px; /* Space between buttons */
+    padding-top: 10px;
+    border-top: 1px solid #eee; /* Separator line */
+    margin-top: 5px;
 }
 
 .list-section li .actions button {
     background-color: transparent;
     border: none;
     cursor: pointer;
-    font-size: 14px;
-    margin-left: 8px;
-    padding: 5px;
+    font-size: 0.9em; /* Adjust button text size */
+    padding: 6px 10px; /* Adjust button padding */
     border-radius: 3px;
     transition: background-color 0.2s ease;
+}
+.list-section li .actions button .btn-text {
+    margin-left: 4px; /* Space between icon and text */
 }
 
 .list-section li .actions .edit-btn {
@@ -148,6 +240,29 @@ header h1 {
     background-color: #d4edda;
 }
 
+
+/* Edit input fields within the task item */
+.list-section li input.edit-title-input, /* For editing title */
+.list-section li textarea.edit-text-input { /* For editing description */
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 8px;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    font-size: 1em; /* Match display font size */
+    font-family: 'Arial', sans-serif; /* Ensure consistent font */
+}
+.list-section li input.edit-title-input {
+    font-size: 1.2em; /* Match title display font size */
+    font-weight: bold;
+}
+.list-section li textarea.edit-text-input {
+    min-height: 60px;
+    resize: vertical;
+    line-height: 1.6; /* Match description display */
+}
+
+/* Original edit input (if any parts are still used from very old versions) */
 .list-section li input.edit-input {
     flex-grow: 1;
     padding: 5px;
@@ -156,37 +271,49 @@ header h1 {
     border-radius: 3px;
 }
 
+
 /* === Responsive Adjustments === */
 
 /* Tablets and Larger Phones */
 @media (max-width: 768px) {
     body {
-        padding: 15px; /* Slightly more padding than smallest mobile */
+        padding: 15px;
     }
     .todo-container {
-        padding: 25px; /* More padding than small mobile */
+        padding: 25px;
     }
     header h1 {
-        font-size: 26px; /* Slightly larger than small mobile */
+        font-size: 26px;
     }
     .logo-placeholder {
-        width: 45px; /* Slightly larger */
+        width: 45px;
         height: 45px;
         margin-right: 12px;
     }
-    #todo-input, #add-task-btn {
-        font-size: 15px; /* Slightly larger */
-        padding: 11px 14px;
-    }
+    /* Input section already stacks due to main styling */
+    #todo-title-input,
+    #todo-text-input,
+    #todo-date-input,
+    #todo-time-input,
     #add-task-btn {
-        padding: 11px 18px;
+        font-size: 15px;
+        /* padding: 11px 14px; */ /* Padding already defined above */
     }
-    .list-section li {
-        padding: 11px 14px;
+    /* #add-task-btn {
+        padding: 11px 18px;
+    } */
+    .task-title {
+        font-size: 1.3em; /* Adjust title size */
+    }
+    .todo-item-box {
+        padding: 12px;
     }
     .list-section li .actions button {
-        font-size: 13px; /* Ensure buttons don't get too small */
-        margin-left: 6px;
+        font-size: 0.85em;
+        padding: 5px 8px;
+    }
+     .list-section li .actions button .btn-text {
+        /* display: none; */ /* Example: Hide text on tablets if icons are enough */
     }
 }
 
@@ -196,54 +323,61 @@ header h1 {
         padding: 10px;
     }
     .todo-container {
-        padding: 20px; /* Original mobile padding */
-        max-width: 100%; /* Allow full width on very small screens */
+        padding: 20px;
+        max-width: 100%;
     }
     header {
-        flex-direction: column; /* Stack logo and title */
-        align-items: flex-start; /* Align to left */
+        flex-direction: column;
+        align-items: flex-start;
         margin-bottom: 20px;
     }
     .logo-placeholder {
         width: 40px;
         height: 40px;
-        margin-right: 0; /* No margin as it's stacked */
-        margin-bottom: 10px; /* Space below logo */
+        margin-right: 0;
+        margin-bottom: 10px;
     }
     header h1 {
-        font-size: 22px; /* Smaller for stacked layout */
+        font-size: 22px;
     }
-    .input-section {
-        flex-direction: column; /* Stack input and button */
-    }
-    #todo-input {
-        border-radius: 5px; /* Full radius when stacked */
-        margin-bottom: 10px; /* Space between input and button */
-        width: 100%; /* Take full width */
+    /* Input section already stacks */
+    .datetime-inputs {
+        flex-direction: column; /* Stack date and time inputs */
+        gap: 10px;
     }
     #add-task-btn {
-        border-radius: 5px; /* Full radius when stacked */
-        width: 100%; /* Take full width */
+        width: 100%; /* Make button full width */
         font-size: 14px;
-        padding: 10px 12px;
+        /* padding: 10px 12px; */
     }
-    .list-section li {
-        padding: 10px 12px;
-        flex-direction: column; /* Stack task text and actions */
-        align-items: flex-start;
+    #todo-title-input,
+    #todo-text-input,
+    #todo-date-input,
+    #todo-time-input {
+        font-size: 14px;
     }
-    .list-section li .task-text {
-        margin-bottom: 8px; /* Space between text and buttons */
+
+    .task-title {
+        font-size: 1.2em; /* Further adjust title size */
+    }
+    .todo-item-box {
+        padding: 10px;
+        border-left-width: 4px;
     }
     .list-section li .actions {
-        width: 100%; /* Make actions take full width */
-        display: flex;
-        justify-content: flex-end; /* Align buttons to the right */
+        flex-direction: column; /* Stack action buttons */
+        gap: 8px; /* Adjusted gap for stacked buttons */
+        align-items: stretch; /* Make buttons full width */
+        padding-top: 8px;
+        margin-top: 8px;
     }
     .list-section li .actions button {
-        margin-left: 10px; /* Adjust spacing between buttons */
+        width: 100%;
+        text-align: center;
+        font-size: 0.9em; /* Ensure text is readable */
+        padding: 8px 10px; /* Adequate padding for touch targets */
     }
-    .list-section li .actions button:first-child {
-        margin-left: 0; /* No left margin for the first button in actions */
+    .list-section li .actions button .btn-text {
+         /* display: inline; */ /* Ensure text is visible even if hidden on tablet */
     }
 }
