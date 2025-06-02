@@ -115,9 +115,13 @@ header h1 {
     background-color: #0056b3;
 }
 
-
-.list-section ul {
-    list-style-type: none;
+/* Targetting ul#todo-list directly */
+#todo-list {
+    list-style-type: none; /* Already there, just confirming */
+    padding: 0; /* Remove default ul padding */
+    display: flex; /* Enable flexbox */
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    gap: 15px; /* This will be the gap between boxes (both horizontally and vertically when wrapped) */
 }
 
 
@@ -125,10 +129,11 @@ header h1 {
 .list-section li {
     background-color: transparent; /* Remove background from li itself */
     padding: 0; /* Remove padding from li itself */
-    margin-bottom: 15px; /* Space between boxes */
-    /* display: flex; */ /* Remove flex from li if item-box handles layout */
-    /* justify-content: space-between; */
-    /* align-items: center; */
+    /* margin-bottom: 15px; */ /* Remove this, as 'gap' on ul will handle spacing */
+
+    flex-grow: 1; /* Allow items to grow if space is available */
+    flex-shrink: 1; /* Allow items to shrink if needed */
+    min-width: 280px; /* Minimum width for a todo box before it wraps or shrinks too much. */
 }
 
 .todo-item-box {
@@ -138,6 +143,8 @@ header h1 {
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    width: 100%; /* Make the box fill its li container */
+    height: 100%; /* Make the box fill its li container vertically for equal height rows */
     display: flex;
     flex-direction: column; /* Stack content and actions */
     gap: 10px; /* Space between content and actions */
@@ -276,6 +283,17 @@ header h1 {
 
 /* Tablets and Larger Phones */
 @media (max-width: 768px) {
+    #todo-list {
+        flex-direction: column; /* Stack items vertically */
+        gap: 15px; /* Keep the gap for vertical spacing */
+    }
+
+    .list-section li {
+        flex-basis: 100%; /* Make each item take full width when stacked */
+        min-width: auto; /* Reset min-width if not needed for single column */
+        /* margin-bottom: 15px; */ /* If gap isn't enough or preferred */
+    }
+
     body {
         padding: 15px;
     }
