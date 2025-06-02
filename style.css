@@ -117,23 +117,29 @@ header h1 {
 
 /* Targetting ul#todo-list directly */
 #todo-list {
-    list-style-type: none; /* Already there, just confirming */
-    padding: 0; /* Remove default ul padding */
-    display: flex; /* Enable flexbox */
-    flex-wrap: wrap; /* Allow items to wrap to the next line */
-    gap: 15px; /* This will be the gap between boxes (both horizontally and vertically when wrapped) */
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    /* No margin-top here, section.list-section handles it */
 }
 
+/* Added rule for section.list-section */
+section.list-section {
+    margin-top: 20px; /* Increased separation from input section */
+}
 
 /* --- To-Do Item Box Styling --- */
 .list-section li {
-    background-color: transparent; /* Remove background from li itself */
-    padding: 0; /* Remove padding from li itself */
-    /* margin-bottom: 15px; */ /* Remove this, as 'gap' on ul will handle spacing */
-
-    flex-grow: 1; /* Allow items to grow if space is available */
-    flex-shrink: 1; /* Allow items to shrink if needed */
-    min-width: 260px; /* Adjusted to allow two items in a 550px container with a 15px gap */
+    display: flex; /* Make li itself a flex container */
+    flex-grow: 1; /* Allow li to grow */
+    flex-shrink: 1; /* Allow li to shrink */
+    flex-basis: 250px;
+    min-width: 220px; /* Absolute minimum, smaller than basis for more flexibility */
+    padding: 0; /* Ensure no li padding interferes */
+    margin: 0; /* Ensure no li margin interferes if 'gap' is used on ul */
+    background-color: transparent;
 }
 
 .todo-item-box {
