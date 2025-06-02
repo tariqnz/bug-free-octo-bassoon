@@ -1,0 +1,189 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.todo-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 15px;
+}
+
+.logo-placeholder {
+    width: 50px; /* Can be adjusted if the SVG itself has a different aspect ratio desire */
+    height: 50px;
+    background-color: #007bff; /* Primary color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    margin-right: 15px;
+    padding: 5px; /* Add some padding so the SVG isn't edge-to-edge */
+}
+
+.logo-placeholder svg {
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+}
+
+header h1 {
+    font-size: 28px;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.input-section {
+    display: flex;
+    margin-bottom: 25px;
+}
+
+#todo-input {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 5px 0 0 5px;
+    font-size: 16px;
+    outline: none;
+}
+
+#todo-input:focus {
+    border-color: #007bff;
+}
+
+#add-task-btn {
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 16px;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+#add-task-btn:hover {
+    background-color: #0056b3;
+}
+
+.list-section ul {
+    list-style-type: none;
+}
+
+.list-section li {
+    background-color: #f9f9f9;
+    padding: 12px 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.list-section li.completed {
+    background-color: #e0ffe0;
+    text-decoration: line-through;
+    color: #555;
+}
+
+.list-section li .task-text {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.list-section li .actions button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 8px;
+    padding: 5px;
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
+}
+
+.list-section li .actions .edit-btn {
+    color: #ffc107; /* Amber */
+}
+.list-section li .actions .edit-btn:hover {
+    background-color: #fff3cd;
+}
+
+.list-section li .actions .delete-btn {
+    color: #dc3545; /* Red */
+}
+.list-section li .actions .delete-btn:hover {
+    background-color: #f8d7da;
+}
+
+.list-section li .actions .done-btn {
+    color: #28a745; /* Green */
+}
+.list-section li .actions .done-btn:hover {
+    background-color: #d4edda;
+}
+
+.list-section li input.edit-input {
+    flex-grow: 1;
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* Basic responsive adjustments */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    .todo-container {
+        padding: 20px;
+    }
+    header h1 {
+        font-size: 24px;
+    }
+    .logo-placeholder {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px; /* Adjusted margin for smaller screens */
+    }
+    /* Ensure SVG scales down in the smaller placeholder if needed */
+    .logo-placeholder svg {
+       /* width: 100%; height: auto; already defined globally, should be fine */
+    }
+    #todo-input, #add-task-btn {
+        font-size: 14px;
+        padding: 10px 12px;
+    }
+    #add-task-btn {
+        padding: 10px 15px;
+    }
+    .list-section li {
+        padding: 10px 12px;
+    }
+}

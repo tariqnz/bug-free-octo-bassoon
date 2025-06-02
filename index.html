@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="todo-container">
+        <header>
+            <div class="logo-placeholder">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="40" height="40">
+                    <path fill="#FFFFFF" d="M18.75,34.375 L7.125,22.75 L11.0625,18.8125 L18.75,26.5 L38.9375,6.3125 L42.875,10.25 Z"/>
+                    <path fill="none" stroke="#FFFFFF" stroke-width="2" d="M18.75,34.375 L7.125,22.75 L11.0625,18.8125 L18.75,26.5 L38.9375,6.3125 L42.875,10.25 Z"/>
+                </svg>
+            </div>
+            <h1>My To-Do List</h1>
+        </header>
+        <section class="input-section">
+            <input type="text" id="todo-input" placeholder="Add a new task...">
+            <button id="add-task-btn">Add Task</button>
+        </section>
+        <section class="list-section">
+            <ul id="todo-list">
+                <!-- To-do items will be added here by JavaScript -->
+            </ul>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
