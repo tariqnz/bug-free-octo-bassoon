@@ -133,7 +133,7 @@ header h1 {
 
     flex-grow: 1; /* Allow items to grow if space is available */
     flex-shrink: 1; /* Allow items to shrink if needed */
-    min-width: 280px; /* Minimum width for a todo box before it wraps or shrinks too much. */
+    min-width: 260px; /* Adjusted to allow two items in a 550px container with a 15px gap */
 }
 
 .todo-item-box {
