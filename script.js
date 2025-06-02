@@ -29,8 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         // For now, createTodoItem will just log until its HTML part is built
-        createTodoItem(title, taskText, date, time, false);
-
+        createTodoItem(title, taskText, date, time, false); 
+        
         todoTitleInput.value = '';
         todoTextInput.value = '';
         todoDateInput.value = '';
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const taskDescriptionElement = document.createElement('p');
         taskDescriptionElement.classList.add('task-description');
         taskDescriptionElement.textContent = taskText;
-
+        
         contentDiv.appendChild(taskTitleElement);
         contentDiv.appendChild(taskDescriptionElement);
 
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             contentDiv.appendChild(dateTimeDiv);
         }
-
+        
         itemBox.appendChild(contentDiv);
 
         const actionsDiv = document.createElement('div');
@@ -95,12 +95,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const doneBtn = document.createElement('button');
         doneBtn.classList.add('done-btn');
-        doneBtn.innerHTML = '&#x2714; <span class="btn-text">Done</span>';
+        doneBtn.innerHTML = '&#x2714; <span class="btn-text">Done</span>'; 
         doneBtn.addEventListener('click', toggleDone);
 
         const editBtn = document.createElement('button');
         editBtn.classList.add('edit-btn');
-        editBtn.innerHTML = '&#x270E; <span class="btn-text">Edit</span>';
+        editBtn.innerHTML = '&#x270E; <span class="btn-text">Edit</span>'; 
         editBtn.addEventListener('click', editTask);
 
         const deleteBtn = document.createElement('button');
@@ -137,14 +137,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const editButton = taskItem.querySelector('.edit-btn');
 
         // Assuming task-title and task-description elements exist from createTodoItem (next step)
-        const titleElement = taskItem.querySelector('.task-title');
+        const titleElement = taskItem.querySelector('.task-title'); 
         const textElement = taskItem.querySelector('.task-description');
 
         if (!titleElement || !textElement) {
             console.error("Title or text element not found for editing.");
             return;
         }
-
+        
         const currentTitle = titleElement.textContent;
         const currentText = textElement.textContent;
 
@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
         saveButton.innerHTML = '&#x270E;'; // Edit icon
         saveButton.removeEventListener('click', () => saveEditedTask(taskItem, titleInput, textInput, saveButton)); // Not ideal, better to replace node or manage listeners more robustly if this were more complex
         saveButton.addEventListener('click', editTask);
-
+        
         saveTodos();
     }
 
@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Fallback if elements are inputs during edit (though ideally save before this runs)
             const title = titleEl ? titleEl.textContent : taskItem.querySelector('.edit-title-input')?.value;
             const text = textEl ? textEl.textContent : taskItem.querySelector('.edit-text-input')?.value;
-
+            
             // Extract date/time, removing prefixes if they exist from the temporary display
             const dateText = dateEl ? dateEl.textContent.replace('Date: ', '') : '';
             const timeText = timeEl ? timeEl.textContent.replace('Time: ', '') : '';

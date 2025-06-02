@@ -62,6 +62,7 @@ header h1 {
     flex-direction: column; /* Stack input fields */
     gap: 10px; /* Space between input elements */
     margin-bottom: 25px;
+    /* border: 2px solid green !important; */ /* Debug border removed */
 }
 
 #todo-title-input,
@@ -125,9 +126,14 @@ header h1 {
     /* No margin-top here, section.list-section handles it */
 }
 
-/* Added rule for section.list-section */
+/* Updated rule for section.list-section */
 section.list-section {
-    margin-top: 20px; /* Increased separation from input section */
+    display: flow-root; /* Create a new block formatting context */
+    width: 100%;       /* Ensure it takes full available width */
+    margin-top: 20px;  /* Keep existing margin */
+    /* Temporary debug border removed */
+    /* border: 2px solid purple !important;  */
+    /* padding: 5px; */ /* Padding for debug border removed */
 }
 
 /* --- To-Do Item Box Styling --- */
@@ -135,11 +141,11 @@ section.list-section {
     display: flex; /* Make li itself a flex container */
     flex-grow: 1; /* Allow li to grow */
     flex-shrink: 1; /* Allow li to shrink */
-    flex-basis: 250px;
+    flex-basis: 250px; 
     min-width: 220px; /* Absolute minimum, smaller than basis for more flexibility */
     padding: 0; /* Ensure no li padding interferes */
     margin: 0; /* Ensure no li margin interferes if 'gap' is used on ul */
-    background-color: transparent;
+    background-color: transparent; 
 }
 
 .todo-item-box {
@@ -276,7 +282,7 @@ section.list-section {
 }
 
 /* Original edit input (if any parts are still used from very old versions) */
-.list-section li input.edit-input {
+.list-section li input.edit-input { 
     flex-grow: 1;
     padding: 5px;
     margin-right: 10px;
@@ -324,7 +330,7 @@ section.list-section {
         /* padding: 11px 14px; */ /* Padding already defined above */
     }
     /* #add-task-btn {
-        padding: 11px 18px;
+        padding: 11px 18px; 
     } */
     .task-title {
         font-size: 1.3em; /* Adjust title size */
@@ -333,7 +339,7 @@ section.list-section {
         padding: 12px;
     }
     .list-section li .actions button {
-        font-size: 0.85em;
+        font-size: 0.85em; 
         padding: 5px 8px;
     }
      .list-section li .actions button .btn-text {
@@ -347,22 +353,22 @@ section.list-section {
         padding: 10px;
     }
     .todo-container {
-        padding: 20px;
-        max-width: 100%;
+        padding: 20px; 
+        max-width: 100%; 
     }
     header {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: column; 
+        align-items: flex-start; 
         margin-bottom: 20px;
     }
     .logo-placeholder {
         width: 40px;
         height: 40px;
-        margin-right: 0;
-        margin-bottom: 10px;
+        margin-right: 0; 
+        margin-bottom: 10px; 
     }
     header h1 {
-        font-size: 22px;
+        font-size: 22px; 
     }
     /* Input section already stacks */
     .datetime-inputs {
