@@ -3,35 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My To-Do List</title>
+    <title>Modern To-Do List</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="todo-container">
-        <header>
-            <div class="logo-placeholder">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="40" height="40">
-                    <path fill="#FFFFFF" d="M18.75,34.375 L7.125,22.75 L11.0625,18.8125 L18.75,26.5 L38.9375,6.3125 L42.875,10.25 Z"/>
-                    <path fill="none" stroke="#FFFFFF" stroke-width="2" d="M18.75,34.375 L7.125,22.75 L11.0625,18.8125 L18.75,26.5 L38.9375,6.3125 L42.875,10.25 Z"/>
+    <div id="app-container">
+        <header class="app-header">
+            <div class="logo-container">
+                <!-- SVG Logo will be inserted here by script.js or directly if static -->
+                <svg class="app-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="36" height="36">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
                 </svg>
             </div>
-            <h1>My To-Do List</h1>
+            <h1>My Modern To-Do List</h1>
         </header>
-        <section class="input-section">
-            <input type="text" id="todo-title-input" placeholder="Task Title (Required)">
-            <textarea id="todo-text-input" placeholder="Task details... (Required)" rows="3"></textarea> 
-            <div class="datetime-inputs">
-                <input type="date" id="todo-date-input">
-                <input type="time" id="todo-time-input">
-            </div>
-            <button id="add-task-btn">Add Task</button>
-        </section>
-        <section class="list-section">
-            <ul id="todo-list">
-                <!-- To-do items will be added here by JavaScript -->
-            </ul>
-        </section>
+
+        <main>
+            <section id="input-area">
+                <h2>Add New Task</h2>
+                <form id="add-task-form">
+                    <div class="form-group">
+                        <label for="task-title">Title:</label>
+                        <input type="text" id="task-title" name="task-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="task-description">Description:</label>
+                        <textarea id="task-description" name="task-description" rows="3"></textarea>
+                    </div>
+                    <div class="form-group form-row">
+                        <div class="form-group-half">
+                            <label for="task-due-date">Due Date:</label>
+                            <input type="date" id="task-due-date" name="task-due-date">
+                        </div>
+                        <div class="form-group-half">
+                            <label for="task-due-time">Due Time:</label>
+                            <input type="time" id="task-due-time" name="task-due-time">
+                        </div>
+                    </div>
+                    <button type="submit" id="add-task-btn">Add Task</button>
+                </form>
+            </section>
+
+            <section id="task-display-area">
+                <h2>Tasks</h2>
+                <div id="task-list-container">
+                    <!-- Tasks will be dynamically added here by JavaScript -->
+                    <ul id="task-list"></ul>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <p>&copy; 2023 Modern To-Do App</p>
+        </footer>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
