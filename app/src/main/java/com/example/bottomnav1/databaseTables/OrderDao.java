@@ -27,6 +27,9 @@ public interface OrderDao {
     @Query("SELECT * FROM 'orders' WHERE id = :id")
     Order getOrderById(long id);
 
+    @Query("SELECT * FROM 'orders' WHERE customerId = :customerId")
+    List<Order> getOrdersByCustomerId(long customerId);
+
     @Query("SELECT * FROM customers WHERE id = :id")
     Customer getCustomerDet(long id);
 
