@@ -36,6 +36,12 @@ import java.util.List;
 import timber.log.Timber;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHolder>{
+    // Callback interface for when an item is deleted
+    public interface OnOrderDeletedListener {
+        void onOrderDeleted(OrderList order);
+    }
+    private OnOrderDeletedListener mDeleteListener;
+
     Context mContext;
     List<OrderList> mOrderList;
     private static final String TAG = "OrderAdapter"; // For logging
@@ -43,6 +49,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     public OrderAdapter(@NonNull Context context, List<OrderList> orders) {
         mContext = context;
         mOrderList = orders;
+    }
+
+    public void setOnOrderDeletedListener(OnOrderDeletedListener listener) {
+        this.mDeleteListener = listener;
     }
 
     @NonNull
@@ -74,10 +84,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
     @Override
     public int getItemCount() {return mOrderList != null ? mOrderList.size() : 0;}
-    public void filterList(ArrayList<OrderList> filteredList){
-        mOrderList = filteredList;
-        notifyDataSetChanged();
-    }
     // This method is correctly defined for removing item from the list and notifying adapter
     public void removeItem(int position) {
         if (mOrderList != null && position >= 0 && position < mOrderList.size()) {
@@ -195,15 +201,16 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
                                             return;
                                         }
                                         if (MyDatabase.INSTANCE != null && MyDatabase.INSTANCE.orderDao() != null) {
-                                            // Get the order to delete *before* removing it from the list
+                                            // Get the order to delete *before* doing anything else
                                             OrderList orderToDelete = mOrderList.get(currentPosition);
+
+                                            // Delete from the database
                                             MyDatabase.INSTANCE.orderDao().deleteOrder(orderToDelete.getId());
 
-                                            // Remove from the adapter's list
-                                            mOrderList.remove(currentPosition);
-
-                                            // Notify the adapter that an item was removed at this specific position
-                                            notifyItemRemoved(currentPosition);
+                                            // Invoke the callback to notify the fragment. The fragment is now responsible for updating the list.
+                                            if (mDeleteListener != null) {
+                                                mDeleteListener.onOrderDeleted(orderToDelete);
+                                            }
 
                                             Toast.makeText(activity, "Order deleted", Toast.LENGTH_SHORT).show();
                                         } else {
